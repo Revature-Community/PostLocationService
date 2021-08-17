@@ -9,6 +9,9 @@ import org.springframework.data.repository.query.Param;
 import com.revature.models.Posts;
 
 public interface PostsRepository extends JpaRepository<Posts, Integer> {
-	@Query(value = "SELECT * FROM post WHERE post.location_id = :locationId", nativeQuery = true)
+	@Query(value = "SELECT * FROM post WHERE post.location_id = :locationId AND active_state = true ORDER BY date DESC", nativeQuery = true)
     List<Posts> getPostsByLocationId(@Param("locationId") int locationId);
+	
+	@Query(value = "SELECT * FROM post WHERE active_state = true ORDER BY date DESC", nativeQuery = true)
+	List<Posts> findAllSortedByDate();
 }

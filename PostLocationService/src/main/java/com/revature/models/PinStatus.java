@@ -1,32 +1,34 @@
+
 package com.revature.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Roles")
+@Table(name = "pin_status")
 @NoArgsConstructor
-public @Data class Role {
-
+public @Data class PinStatus {
+	
 	@Id
+	@Column(name = "pin_status_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="role_id")
-	private Integer roleId;
-	@Enumerated(EnumType.STRING)
-	private RoleTitle title;
+	private Integer id;
+	
+	@Column(name = "pin_status")
+	private String pinStatus;
 
-	public Role(int i, RoleTitle user) {
-		this.roleId = i;
-		this.title = user;
+	public PinStatus(Integer id, String pinStatus) {
+		super();
+		this.id = id;
+		this.pinStatus = pinStatus;
 	}
+	
+	
 }

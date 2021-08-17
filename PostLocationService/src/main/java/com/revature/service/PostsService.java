@@ -1,10 +1,11 @@
 package com.revature.service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import com.revature.models.Posts;
 import com.revature.repositories.PostsRepository;
@@ -17,8 +18,8 @@ public class PostsService {
 
 	public List<Posts> getAllPost() {
 
-		List<Posts> postsList = postsRepository.findAll();
-
+		List<Posts> postsList = postsRepository.findAllSortedByDate();
+		
 		return postsList;
 
 	}
