@@ -1,5 +1,7 @@
 package com.revature.service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,8 @@ public class PostsService {
 	}
 
 	public Posts addPost(Posts post) {
-
+		Date currentDate = Date.valueOf(LocalDate.now());
+		post.setDate(currentDate);
 		Posts newPost = postsRepository.save(post);
 
 		return newPost;

@@ -18,7 +18,7 @@ import com.revature.models.Posts;
 import com.revature.service.PostsService;
 
 @RestController
-@CrossOrigin("*" )
+@CrossOrigin("*")
 @RequestMapping("/post")
 public class PostsController {
 
@@ -50,14 +50,14 @@ public class PostsController {
     }
 	
 	@PutMapping("/pinPost/{pinStatus}")
-	public ResponseEntity<Posts> updatePinStatus(@PathVariable("pinStatus") String pinStatus,@RequestBody Posts post){
+	public ResponseEntity<Posts> updatePinStatus(@PathVariable("pinStatus") String pinStatus, @RequestBody Posts post){
 		Posts updatedPost = postsService.updatePinStatus(pinStatus, post);
 		return ResponseEntity.ok().body(updatedPost);
 	}
 	
 	@PutMapping("/activeStatus/")
 	public ResponseEntity<Posts> updateActiveState(@RequestBody Posts post){
-		Posts returningPost =postsService.updateActiveState(post);
-		return ResponseEntity.ok().body(returningPost);
+		postsService.updateActiveState(post);
+		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 }
