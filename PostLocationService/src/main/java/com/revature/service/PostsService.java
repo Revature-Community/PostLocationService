@@ -46,8 +46,9 @@ public class PostsService {
 		return updatedPost;
 	}
 
-	public void updateActiveState(Posts post) {
-		postsRepository.updateActiveState(post.getId());
+	public Posts updateActiveState(Posts post) {
+		Posts returningPost =postsRepository.updateActiveState(post.getId());
+		return returningPost;
 		
 	}
 }
