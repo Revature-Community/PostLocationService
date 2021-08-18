@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,5 +48,16 @@ public class PostsController {
         List<Posts> postsByLocation = postsService.getPostsByLocationId(locationId);
         return new ResponseEntity<>(postsByLocation, HttpStatus.OK);
     }
-
+	
+	@PutMapping("/pinPost/{pinStatus}")
+	public ResponseEntity<Posts> updatePinStatus(@PathVariable("pinStatus") String pinStatus, Posts post){
+		Posts updatedPost = postsService.updatePinStatus(pinStatus, post);
+		return ResponseEntity.ok().body(updatedPost);
+	}
+	
+	@PutMapping("/activeStatus/")
+	public ResponseEntity<Posts> updateActiveState(Posts post){
+		postsService.updateActiveState(post);
+		return ResponseEntity.status(HttpStatus.OK).build();
+	}
 }
